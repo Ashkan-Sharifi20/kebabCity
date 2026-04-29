@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>City Kebab – Authentic Persian Cuisine | Toronto</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&family=Lato:wght@300;400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="menu.html">
 <style>
   :root {
     --cream: #f5f0e8;
@@ -741,8 +740,10 @@
   }
 
   @media (max-width: 900px) {
-    nav { padding: 16px 24px; }
-    .nav-links { display: none; }
+    nav { padding: 12px 16px; flex-wrap: wrap; gap: 10px; }
+    .nav-links { display: flex; flex-wrap: wrap; gap: 12px; }
+    .nav-links a { font-size: 9px; letter-spacing: 1.5px; }
+    .nav-logo-text { font-size: 11px; }
     section { padding: 60px 24px; }
     .menu-grid { grid-template-columns: 1fr; }
     .reviews-grid { grid-template-columns: 1fr; }
@@ -761,7 +762,7 @@
 <!-- NAV -->
 <nav>
   <div class="nav-logo">
-    <img src="logo.png" alt="City Kebab Logo" onerror="this.style.display='none'">
+    <img src="https://images.unsplash.com/photo-1603360946369-dc9bb6258143?w=100&q=80" alt="City Kebab Logo" onerror="this.style.display='none'">
     <span class="nav-logo-text">City Kebab</span>
   </div>
   <ul class="nav-links">
@@ -965,14 +966,10 @@
       </div>
     </div>
   </div>
-  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2883.74891756651!2d-79.4025588237566!3d43.715766748381924!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882b33868d9b743d%3A0x3250682af5ee4ad4!2sCity%20kebab%20Persian%20Restaurant!5e0!3m2!1sen!2sca!4v1777430174610!5m2!1sen!2sca" 
-  width= "100%" height="100%" style="border:0; min-height:500px; display:block;"
-  allowfullscreen="" 
-  loading="lazy" 
-  referrerpolicy="no-referrer-when-downgrade">
-
-  allowfullscreen="" loading="lazy" 
-  referrerpolicy="no-referrer-when-downgrade"></iframe>
+  <div class="map-placeholder">
+    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg>
+    <span>Google Map<br>Embed Here</span>
+  </div>
 </div>
 
 <!-- FOOTER -->

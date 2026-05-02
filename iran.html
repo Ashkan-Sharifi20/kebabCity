@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Land of Iran – City Kebab Toronto</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Cinzel:wght@400;600&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #f5f0e8;
+    --deep: #1a1008;
+    --gold: #c9973a;
+    --gold-light: #e8c06a;
+    --red: #9e2b25;
+    --text: #2e1f0f;
+    --muted: #7a6650;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--cream);
+    color: var(--text);
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 48px;
+    background: rgba(26,16,8,0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(201,151,58,0.2);
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+  }
+
+  .nav-logo-text {
+    font-family: 'Cinzel', serif;
+    font-size: 14px;
+    letter-spacing: 3px;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: 'Lato', sans-serif;
+    font-size: 11px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.7);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .nav-links a:hover, .nav-links a.active { color: var(--gold); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: var(--deep);
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 20% 60%, rgba(158,43,37,0.5) 0%, transparent 55%),
+      radial-gradient(ellipse at 80% 20%, rgba(201,151,58,0.35) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 100%, rgba(100,30,10,0.6) 0%, transparent 60%),
+      linear-gradient(135deg, #2a0e05 0%, #1a1008 40%, #0f0804 100%);
+  }
+
+  .hero-pattern {
+    position: absolute;
+    inset: 0;
+    background-image:
+      repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(201,151,58,0.03) 40px, rgba(201,151,58,0.03) 41px),
+      repeating-linear-gradient(-45deg, transparent, transparent 40px, rgba(201,151,58,0.03) 40px, rgba(201,151,58,0.03) 41px);
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(26,16,8,0.2) 0%, rgba(26,16,8,0.75) 100%);
+  }
+
+  .hero-content {
+    position: relative;
+    text-align: center;
+    padding: 0 24px;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 5px;
+    color: var(--gold);
+    text-transform: uppercase;
+    border: 1px solid rgba(201,151,58,0.4);
+    padding: 8px 24px;
+    margin-bottom: 32px;
+    animation: fadeUp 1s ease 0.2s both;
+  }
+
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(56px, 9vw, 110px);
+    font-weight: 300;
+    color: var(--cream);
+    line-height: 1;
+    letter-spacing: 2px;
+    animation: fadeUp 1s ease 0.4s both;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+
+  .hero-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-style: italic;
+    color: rgba(245,240,232,0.6);
+    margin-top: 20px;
+    letter-spacing: 1px;
+    animation: fadeUp 1s ease 0.6s both;
+  }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 36px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .hero-scroll span {
+    font-size: 9px;
+    letter-spacing: 3px;
+    color: rgba(245,240,232,0.4);
+    text-transform: uppercase;
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, rgba(201,151,58,0.6), transparent);
+    animation: scrollPulse 2s ease infinite;
+  }
+
+  /* SHARED */
+  .section-label {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 5px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .section-label::before {
+    content: '';
+    width: 32px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 5vw, 60px);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--text);
+    margin-bottom: 24px;
+  }
+
+  /* INTRO */
+  .intro-wrap {
+    background: var(--deep);
+    width: 100%;
+  }
+
+  .intro {
+    padding: 100px 48px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .intro-text .section-title { color: var(--cream); }
+
+  .intro-text p {
+    font-size: 16px;
+    line-height: 1.9;
+    color: rgba(245,240,232,0.6);
+    margin-bottom: 20px;
+  }
+
+  .intro-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-style: italic;
+    color: var(--gold-light);
+    border-left: 3px solid var(--gold);
+    padding-left: 24px;
+    line-height: 1.6;
+    margin: 32px 0;
+  }
+
+  .intro-img {
+    position: relative;
+  }
+
+  .intro-img img {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+    display: block;
+  }
+
+  .intro-img-accent {
+    position: absolute;
+    bottom: -16px;
+    right: -16px;
+    width: 160px;
+    height: 160px;
+    border: 2px solid var(--gold);
+    opacity: 0.25;
+    z-index: 0;
+  }
+
+  /* TIMELINE */
+  .timeline-section {
+    padding: 100px 48px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .timeline {
+    margin-top: 60px;
+    position: relative;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0; bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, rgba(201,151,58,0.4), transparent);
+    transform: translateX(-50%);
+  }
+
+  .timeline-item {
+    display: grid;
+    grid-template-columns: 1fr 60px 1fr;
+    gap: 0;
+    margin-bottom: 60px;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s, transform 0.6s;
+  }
+
+  .timeline-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .timeline-left { grid-column: 1; grid-row: 1; }
+  .timeline-dot-col { grid-column: 2; grid-row: 1; display: flex; align-items: center; justify-content: center; }
+  .timeline-right { grid-column: 3; grid-row: 1; }
+
+  .timeline-dot-col::after {
+    content: '';
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--gold);
+    border: 3px solid var(--cream);
+    box-shadow: 0 0 0 1px var(--gold);
+  }
+
+  .timeline-content {
+    padding: 32px;
+    background: rgba(26,16,8,0.04);
+    border: 1px solid rgba(201,151,58,0.1);
+    transition: background 0.3s, border-color 0.3s;
+  }
+
+  .timeline-content:hover {
+    background: rgba(26,16,8,0.07);
+    border-color: rgba(201,151,58,0.25);
+  }
+
+  .timeline-empty { /* intentionally empty */ }
+
+  .timeline-year {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+
+  .timeline-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 400;
+    color: var(--text);
+    margin-bottom: 12px;
+  }
+
+  .timeline-desc {
+    font-size: 13px;
+    line-height: 1.8;
+    color: var(--muted);
+  }
+
+  /* NATURE */
+  .nature-section {
+    background: var(--deep);
+    padding: 100px 0;
+    width: 100%;
+  }
+
+  .nature-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 48px;
+  }
+
+  .nature-section .section-title { color: var(--cream); }
+
+  .nature-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-top: 60px;
+  }
+
+  .nature-card {
+    position: relative;
+    overflow: hidden;
+    height: 420px;
+  }
+
+  .nature-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+    display: block;
+  }
+
+  .nature-card:hover img { transform: scale(1.06); }
+
+  .nature-card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(26,16,8,0.9) 0%, transparent 50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 32px;
+  }
+
+  .nature-card-label {
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    letter-spacing: 3px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .nature-card-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 300;
+    color: var(--cream);
+    line-height: 1.2;
+    margin-bottom: 10px;
+  }
+
+  .nature-card-desc {
+    font-size: 12px;
+    line-height: 1.7;
+    color: rgba(245,240,232,0.6);
+  }
+
+  /* FOOD CULTURE */
+  .food-section {
+    padding: 100px 48px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .food-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    margin-top: 60px;
+    align-items: center;
+  }
+
+  .food-img {
+    width: 100%;
+    height: 480px;
+    object-fit: cover;
+    display: block;
+  }
+
+  .food-text p {
+    font-size: 16px;
+    line-height: 1.9;
+    color: var(--muted);
+    margin-bottom: 20px;
+  }
+
+  .food-fact {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(201,151,58,0.15);
+  }
+
+  .food-fact:last-child { border-bottom: none; }
+
+  .food-fact-icon {
+    width: 32px;
+    height: 32px;
+    color: var(--gold);
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .food-fact-text strong {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    color: var(--text);
+    display: block;
+    margin-bottom: 4px;
+    font-weight: 400;
+  }
+
+  .food-fact-text span {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* SPICE STRIP */
+  .spice-strip {
+    background: var(--red);
+    padding: 80px 48px;
+    text-align: center;
+  }
+
+  .spice-strip h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(32px, 5vw, 56px);
+    font-weight: 300;
+    color: var(--cream);
+    margin-bottom: 16px;
+  }
+
+  .spice-strip p {
+    font-size: 15px;
+    color: rgba(245,240,232,0.7);
+    max-width: 600px;
+    margin: 0 auto 36px;
+    line-height: 1.8;
+  }
+
+  .spice-btn {
+    display: inline-block;
+    background: var(--cream);
+    color: var(--red);
+    padding: 14px 40px;
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.3s, transform 0.2s;
+  }
+
+  .spice-btn:hover { background: white; transform: translateY(-2px); }
+
+  /* FOOTER */
+  footer {
+    background: #0f0a04;
+    padding: 40px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid rgba(201,151,58,0.1);
+  }
+
+  .footer-logo {
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    letter-spacing: 4px;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+
+  .footer-copy {
+    font-size: 11px;
+    color: rgba(245,240,232,0.3);
+    letter-spacing: 1px;
+  }
+
+  .footer-social { display: flex; gap: 20px; }
+
+  .footer-social a {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.4);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .footer-social a:hover { color: var(--gold); }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
+  }
+
+  @media (max-width: 900px) {
+    nav { padding: 12px 16px; flex-wrap: wrap; gap: 10px; }
+    .nav-links { display: flex; flex-wrap: wrap; gap: 12px; }
+    .nav-links a { font-size: 9px; letter-spacing: 1.5px; }
+    .nav-logo-text { font-size: 11px; }
+    .intro { grid-template-columns: 1fr; gap: 40px; padding: 60px 24px; }
+    .timeline-section { padding: 60px 24px; }
+    .timeline::before { left: 20px; }
+    .timeline-item { grid-template-columns: 40px 1fr; }
+    .timeline-left { grid-column: 2; }
+    .timeline-dot-col { grid-column: 1; }
+    .timeline-right { grid-column: 2; }
+    .timeline-empty { display: none; }
+    .nature-grid { grid-template-columns: 1fr; }
+    .nature-card { height: 300px; }
+    .nature-inner { padding: 0 24px; }
+    .food-grid { grid-template-columns: 1fr; gap: 40px; }
+    .food-section { padding: 60px 24px; }
+    footer { flex-direction: column; gap: 16px; text-align: center; }
+    .spice-strip { padding: 60px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <span class="nav-logo-text">City Kebab</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="menu.html">Menu</a></li>
+    <li><a href="iran.html" class="active">Iran</a></li>
+    <li><a href="index.html#about">Our Story</a></li>
+    <li><a href="index.html#reviews">Reviews</a></li>
+    <li><a href="index.html#contact">Visit Us</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-pattern"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-badge">The Land Behind the Food</div>
+    <h1>The Soul of <em>Iran</em></h1>
+    <p class="hero-sub">History, Nature & the Roots of Persian Cuisine</p>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</div>
+
+<!-- INTRO -->
+<div class="intro-wrap">
+  <div class="intro">
+    <div class="intro-text">
+      <div class="section-label" style="color:var(--gold);">A Civilization of 7,000 Years</div>
+      <h2 class="section-title">Where Every Dish Tells a <em style="font-family:'Cormorant Garamond',serif;font-style:italic;">Story</em></h2>
+      <p>Iran — ancient Persia — is one of the world's oldest civilizations, a land where empires rose and fell, where poets wrote verses that still echo today, and where food became an art form passed down through generations.</p>
+      <div class="intro-quote">"The food of a people is the memory of their land."</div>
+      <p>From the snow-capped Alborz Mountains to the warm shores of the Persian Gulf, Iran's geography shaped not only its people but every spice, herb, and flame that defines Persian cuisine.</p>
+    </div>
+    <div class="intro-img">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Persepolis_-_general_view.jpg/1280px-Persepolis_-_general_view.jpg" alt="Persepolis Iran">
+      <div class="intro-img-accent"></div>
+    </div>
+  </div>
+</div>
+
+<!-- TIMELINE -->
+<div class="timeline-section">
+  <div class="section-label">Through the Ages</div>
+  <h2 class="section-title">A Brief History of <em style="font-family:'Cormorant Garamond',serif;font-style:italic;">Persia</em></h2>
+  <div class="timeline">
+
+    <div class="timeline-item">
+      <div class="timeline-left timeline-content">
+        <div class="timeline-year">550 BC</div>
+        <div class="timeline-title">The Achaemenid Empire</div>
+        <div class="timeline-desc">Cyrus the Great founded the first Persian Empire — the largest the ancient world had ever seen. Spanning from Greece to India, it united dozens of nations under one culture. The royal kitchens of Persepolis served feasts that would shape Persian cuisine for millennia.</div>
+      </div>
+      <div class="timeline-dot-col"></div>
+      <div class="timeline-right timeline-empty"></div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-left timeline-empty"></div>
+      <div class="timeline-dot-col"></div>
+      <div class="timeline-right timeline-content">
+        <div class="timeline-year">224 AD</div>
+        <div class="timeline-title">The Sassanid Dynasty</div>
+        <div class="timeline-desc">The Sassanid era saw Persian art, architecture, and cuisine reach new heights. Saffron, pomegranate, and dried fruits became staples of royal cooking. The tradition of slow-cooked stews — khoresh — was born in this golden age.</div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-left timeline-content">
+        <div class="timeline-year">800 AD</div>
+        <div class="timeline-title">The Islamic Golden Age</div>
+        <div class="timeline-desc">Persian scholars, poets and chefs led the Islamic world's golden age. Rumi, Hafez, and Ferdowsi penned immortal verses while Persian kitchens perfected the art of combining sweet and savory — a hallmark of Persian food to this day.</div>
+      </div>
+      <div class="timeline-dot-col"></div>
+      <div class="timeline-right timeline-empty"></div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-left timeline-empty"></div>
+      <div class="timeline-dot-col"></div>
+      <div class="timeline-right timeline-content">
+        <div class="timeline-year">1500s</div>
+        <div class="timeline-title">The Safavid Golden Era</div>
+        <div class="timeline-desc">Under the Safavid dynasty, Isfahan became one of the most beautiful cities on earth. Persian gardens, tile work, and bazaars flourished. The koobideh kebab and chelokabab became national dishes served from royal courts to street vendors.</div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-left timeline-content">
+        <div class="timeline-year">Today</div>
+        <div class="timeline-title">A Living Legacy</div>
+        <div class="timeline-desc">Iran's 85 million people carry a civilization's worth of culture, language, and food traditions. Persian cuisine — rich with saffron, fresh herbs, and slow-cooked flavors — is now celebrated worldwide. At City Kebab, we bring that legacy to Toronto.</div>
+      </div>
+      <div class="timeline-dot-col"></div>
+      <div class="timeline-right timeline-empty"></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- NATURE -->
+<div class="nature-section">
+  <div class="nature-inner">
+    <div class="section-label">The Land Itself</div>
+    <h2 class="section-title">Iran's Breathtaking <em style="font-family:'Cormorant Garamond',serif;font-style:italic;">Nature</em></h2>
+    <div class="nature-grid">
+      <div class="nature-card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Damavand_volcano%2C_Iran.jpg/1280px-Damavand_volcano%2C_Iran.jpg" alt="Alborz Mountains Iran">
+        <div class="nature-card-overlay">
+          <div class="nature-card-label">The Mountains</div>
+          <div class="nature-card-title">Alborz & Zagros</div>
+          <div class="nature-card-desc">Snow-capped mountain ranges that give Iran its fresh herbs, spring water, and cool highland climates where pomegranates and walnuts thrive.</div>
+        </div>
+      </div>
+      <div class="nature-card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Dasht-e_Kavir.jpg/1280px-Dasht-e_Kavir.jpg" alt="Persian desert landscape">
+        <div class="nature-card-overlay">
+          <div class="nature-card-label">The Desert</div>
+          <div class="nature-card-title">Dasht-e Kavir</div>
+          <div class="nature-card-desc">Iran's vast salt deserts, where caravans once crossed the Silk Road. The dry heat gave birth to slow-cooking traditions and preserved spices that define Persian flavor.</div>
+        </div>
+      </div>
+      <div class="nature-card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Caspian_sea_from_space.jpg/1280px-Caspian_sea_from_space.jpg" alt="Caspian Sea Iran">
+        <div class="nature-card-overlay">
+          <div class="nature-card-label">The Sea</div>
+          <div class="nature-card-title">Caspian & Persian Gulf</div>
+          <div class="nature-card-desc">Iran is bordered by two seas. Lush green forests, rice paddies and fresh seafood define the northern coast — the birthplace of Persian rice dishes.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOD CULTURE -->
+<div class="food-section">
+  <div class="section-label">From Land to Table</div>
+  <h2 class="section-title">How Iran Shaped <em style="font-family:'Cormorant Garamond',serif;font-style:italic;">Persian Food</em></h2>
+  <div class="food-grid">
+    <img class="food-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Chelo_kabab.jpg/1280px-Chelo_kabab.jpg" alt="Persian food culture">
+    <div class="food-text">
+      <p>Persian cuisine is one of the oldest and most complex in the world — a direct reflection of Iran's diverse geography, ancient trade routes, and rich cultural history.</p>
+      <div class="food-fact">
+        <svg class="food-fact-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>
+        <div class="food-fact-text">
+          <strong>Saffron — The Red Gold</strong>
+          <span>Iran produces over 90% of the world's saffron, grown in the Khorasan region. This precious spice colors and perfumes everything from rice to desserts.</span>
+        </div>
+      </div>
+      <div class="food-fact">
+        <svg class="food-fact-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+        <div class="food-fact-text">
+          <strong>Fresh Herbs — The Heart of Every Dish</strong>
+          <span>Iran's lush northern forests gave birth to a cuisine obsessed with fresh herbs. No Persian table is complete without sabzi khordan — a plate of fresh herbs beside every meal.</span>
+        </div>
+      </div>
+      <div class="food-fact">
+        <svg class="food-fact-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"/></svg>
+        <div class="food-fact-text">
+          <strong>Open Flame — The Ancient Grill</strong>
+          <span>Kebab-making over open charcoal fire is a 3,000-year-old Persian tradition. The word "kebab" itself is Persian — nothing has changed since ancient Persia.</span>
+        </div>
+      </div>
+      <div class="food-fact">
+        <svg class="food-fact-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707"/></svg>
+        <div class="food-fact-text">
+          <strong>Sweet & Sour — A Persian Balance</strong>
+          <span>Pomegranate molasses, dried limes, tamarind and barberries give Persian dishes a sweet-sour depth found nowhere else in the world.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="spice-strip">
+  <h2>Taste Iran in Every Bite</h2>
+  <p>Every dish at City Kebab carries centuries of Persian tradition. From our saffron rice to our homemade doogh — this is Iran on a plate.</p>
+  <a href="menu.html" class="spice-btn">Explore Our Menu</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">City Kebab · Toronto</div>
+  <div class="footer-copy">© 2026 City Kebab Persian Grill. All rights reserved.</div>
+  <div class="footer-social">
+    <a href="https://www.instagram.com/citykebab.toronto/" target="_blank">Instagram</a>
+    <a href="https://www.ubereats.com/ca/store/city-kebab/PR7uMpTIXoWih_vEclRokQ" target="_blank">Uber Eats</a>
+    <a href="https://www.doordash.com/en/store/citykebab-toronto-31824165/" target="_blank">DoorDash</a>
+  </div>
+</footer>
+
+<script>
+  const items = document.querySelectorAll('.timeline-item');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.2 });
+  items.forEach(i => observer.observe(i));
+</script>
+
+</body>
+</html>
